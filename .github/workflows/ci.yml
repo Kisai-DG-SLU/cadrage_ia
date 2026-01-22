@@ -16,6 +16,8 @@ permissions:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    outputs:
+      should_merge: ${{ steps.check_merge.outputs.should_merge }}
     steps:
       - uses: actions/checkout@v4
       - name: Check Deliverables
@@ -25,18 +27,14 @@ jobs:
             exit 1
           fi
           echo "Delivery OK"
-
-    outputs:
-      should_merge: ${{ steps.check_merge.outputs.should_merge }}
-
-    - name: Check if merge required
-      id: check_merge
-      run: |
-        if [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
-          echo "should_merge=true" >> $GITHUB_OUTPUT
-        else
-          echo "should_merge=false" >> $GITHUB_OUTPUT
-        fi
+      - name: Check if merge required
+        id: check_merge
+        run: |
+          if [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
+            echo "should_merge=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_merge=false" >> $GITHUB_OUTPUT
+          fi
 
   auto-merge:
     needs: validate
