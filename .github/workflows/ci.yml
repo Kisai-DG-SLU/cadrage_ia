@@ -57,6 +57,22 @@ jobs:
         SOURCE_BRANCH: ${{ github.ref_name }}
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        echo "Creating/Finding PR for $SOURCE_BRANCH..."
         gh pr create --base main --head "$SOURCE_BRANCH" --title "docs: delivery consolidation" --body "Automated delivery merge" || echo "PR exists"
+        
         PR_URL=$(gh pr list --head "$SOURCE_BRANCH" --json url --jq '.[0].url')
+        echo "Found PR: $PR_URL"
+        
+        echo "Waiting for PR to stabilize..."
+        for i in {1..10}; do
+          STATE=$(gh pr view "$PR_URL" --json mergeable --jq .mergeable)
+          if [ "$STATE" != "UNKNOWN" ]; then 
+            echo "PR stabilized with state: $STATE"
+            break
+          fi
+          echo "Still UNKNOWN, waiting..."
+          sleep 2
+        done
+        
+        echo "Enabling Auto-merge for $PR_URL"
         gh pr merge --auto --merge --delete-branch "$PR_URL"
