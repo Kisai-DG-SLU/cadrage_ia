@@ -242,13 +242,9 @@ Côté équipe, nous mobilisons un Data Scientist à plein temps et un Data Engi
 
 # System Design : Architecture Cible Azure
 
-### Flux End-to-End
-1. **Azure Blob Storage** : Images.
-2. **Azure Machine Learning** : Inférence.
-3. **Azure AI Search** : Recherche vectorielle.
-4. **Azure App Service** : API (FastAPI).
+![Mermaid Architecture](https://mermaid.ink/svg/pako:eNqNUstuwjAQ_BVrTy0S8YI4VKmAtidUatUrN_YmWMW2vIdAKfLvXSePhKBeepjZ2Zkd27vEqREkoRyPd_YAnayZEnidbeZ0sy_YGrZpEq_ZskmSeM3W6Zqts8SR6SR6ZDZJniSrSRIr6_QieWQuSZZkdZos6Trbi-SR6ZDZJlknWZImSbok6yxZZ_uS_CDZJNkjWZMscZbkWZpkiZsk6ZOsksSR6SSZJDNJkmRN0qZpmqRp6iRJkjVJkySuSZp0TdKn65KkWZp0XfK9ZImS9EmW9EmW9EnW9EnWDAmS9Emm9Emm9Ek29Emm9Ek2JMmQpE-ypU-yZUiypU-ypU-yIUkLJFuGtE_SAtkyJO2T7BkS_AV_ADZshA)
 
-<span class="highlight">Avantage</span> : Scalabilité et sécurité Azure.
+<span class="highlight">Avantage</span> : Scalabilité automatique et sécurité Azure.
 
 <!-- 
 NOTES :
@@ -330,11 +326,7 @@ C'est un budget maîtrisé pour un projet de cette envergure.
 
 # Rentabilité & ROI
 
-| Année | Coûts Cumulés | Gains Cumulés | ROI |
-| :--- | :--- | :--- | :--- |
-| **Année 0** | 150 k€ | 0 € | - |
-| **Année 1** | 185 k€ | 400 k€ | **+116%** |
-| **Année 2** | 220 k€ | 800 k€ | **+263%** |
+![ROI Chart](https://mermaid.ink/svg/pako:eNqNUrtuwzAM_BVhTymQB_GRSge0Pbt069CisZGoAn0QKaQg8N9Ljh0XTTvYSRyf7hyPJZ6MQDPkeH6kB-xkK5TAX-8yp7tDwZZwnZLkZLeXJCcnZ5OSXJz8SUnOzqYk-ZOSnJ1NSfInpZCSXJz8SclpSsr_kvKTkpJTkvKSknJJyk_KJSXllpS_lJyWlDxPyXlJyXlJyfOUnKeUnJeUnEvOfUrOS8qeV859Sc5Lyr5Xzn1LzlvKfleue0vOW8q-V657Sy5YKqRcsFRIWUKp_At9AT6YhyY)
 
 - **Point mort** : Atteint à **M+6**.
 - **ROI à 2 ans** : **> 250%**.
