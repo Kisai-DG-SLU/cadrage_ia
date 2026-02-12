@@ -12,7 +12,7 @@
 
 | Caractéristique | Approche A : Embedding & Vector Search | Approche B : Multi-modal LLM |
 | :--- | :--- | :--- |
-| **Technologie** | CNN (ResNet50) ou ViT (Vision Transformer) | GPT-4o-mini / LLaVA / Claude 3.5 Sonnet |
+| **Technologie** | CNN (ResNet50) ou ViT-Base (Vision Transformer) | GPT 5.2 mini / Gemini 3 flash / Claude 4.6 Sonnet |
 | **Fonctionnement** | Extraction de vecteurs de caractéristiques et recherche de voisins (FAISS/Milvus). | Description textuelle de l'image puis recherche sémantique dans le catalogue. |
 | **Points Forts** | Latence très faible, coût d'inférence réduit, scalabilité. | Meilleure compréhension du "style" et des concepts abstraits (ex: "tenue bohème"). |
 | **Points Faibles** | Sensible aux conditions de prise de vue (angle, lumière). | Coût élevé par requête, latence plus importante. |
@@ -25,8 +25,10 @@
 
 ## 4. Critères de Succès & Métriques
 ### Techniques (KPIs Data)
-- **Top-5 Accuracy** : > 70% (l'article recherché ou un équivalent très proche doit être dans les 5 premiers résultats).
+- **Hit@5 (Top-5 Accuracy)** : Hit@5(IA) > Hit@5(baseline) + 15 points avec p < 0.05 (amélioration significative par rapport aux méthodes non-IA).
+- **Objectif minimal** : Atteindre au moins 70% de Hit@5 (valeur cible absolue).
 - **Latence d'inférence** : < 500ms (pour garantir la fluidité mobile).
+- **Baseline mesurée** : Performance des méthodes non-IA (recherche textuelle TF-IDF + similarité couleur) sur dataset Fashion-Insta.
 
 ### Métiers (KPIs Business)
 - **Taux d'Acceptation** : Validation par un panel d'experts mode de la pertinence des recommandations (> 80%).

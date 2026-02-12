@@ -131,19 +131,20 @@ Cette "friction" est une perte sèche de chiffre d'affaires. Notre vision est de
 
 - **Automatisation** : Identification instantanée des caractéristiques.
 - **Pertinence** : Recherche par similarité visuelle (Image-to-Image).
-- **Impact Financier** : 
+- **Impact Financier** :
     - Augmentation du panier moyen.
-    - Hausse du CA estimée à **+400 000 € / an**.
+    - Hausse du CA estimée à **+468k€/an** = **936k€ sur 2 ans**.
 
-<!-- 
+<!--
 NOTES :
 [SCRIPT]
-L'IA n'est pas un simple gadget ici, c'est le coeur du réacteur. Contrairement à une recherche par mot-clé qui est limitée par le vocabulaire de l'utilisateur, notre IA de Computer Vision analyse la texture, la coupe et la couleur de l'image brute. 
-L'impact financier n'est pas négligeable : le marketing estime que cette fonctionnalité générera plus de 400 000 € de CA additionnel par an grâce à la fluidification du parcours d'achat.
+L'IA n'est pas un simple gadget ici, c'est le coeur du réacteur. Contrairement à une recherche par mot-clé qui est limitée par le vocabulaire de l'utilisateur, notre IA de Computer Vision analyse la texture, la coupe et la couleur de l'image brute.
+L'impact financier n'est pas négligeable : le marketing estime que cette fonctionnalité générera **468 000 € de CA additionnel par an** grâce à la fluidification du parcours d'achat.
 
 --- 💡 ANTISÈCHE TECHNIQUE ---
 - Computer Vision : Utilisation de réseaux de neurones profonds pour "comprendre" l'image.
 - Gain de temps : Passer de 2 minutes de recherche manuelle à moins de 500ms.
+- Impact financier : Basé sur données réelles Fashion-Insta 2024 (+14% CA e-commerce, +4% CA physique).
 -->
 
 ---
@@ -174,7 +175,7 @@ Nous utiliserons le dataset DeepFashion, qui contient plus de 800 000 images, po
 
 | Caractéristique | **Approche A (Embeddings)** | Approche B (LLM Vision) |
 | :--- | :--- | :--- |
-| **Technologie** | **ResNet / ViT** | GPT-4o / Claude 3.5 |
+| **Technologie** | **ResNet / ViT** | GPT 4.1 / Claude 4.5 |
 | **Latence** | **< 100ms** | > 2000ms |
 | **Coût** | **Faible (CapEx)** | Élevé (OpEx) |
 
@@ -194,26 +195,30 @@ L'approche B, via des LLM comme GPT-4o, est excellente en compréhension mais tr
 
 ---
 
-# Critères de Succès du POC
+# Critères de Succès du POC (Révisés)
 
 ### KPIs Techniques
-- **Top-5 Accuracy** : > 70%.
-- **Latence d'inférence** : < 500ms.
+- **Hit@5 (Top-5 Accuracy)** : Hit@5(IA) > Hit@5(baseline) + 15 points avec p < 0.05 (amélioration significative).
+- **Baseline mesurée** : Performance des méthodes non-IA (recherche textuelle TF-IDF + similarité couleur) sur dataset Fashion-Insta.
+- **Objectif minimal** : Atteindre au moins 70% de Hit@5 (valeur cible absolue).
+- **Latence d'inférence** : < 500ms (pour garantir la fluidité mobile).
 
 ### KPIs Métiers
 - **Acceptation Mode** : > 80% (Validation experts).
 - **Intégration Azure** : Pipeline cloud-ready.
 
-<!-- 
+<!--
 NOTES :
 [SCRIPT]
-Comment jugerons-nous le succès de ce POC ? 
-D'abord par la précision : l'article idéal doit se trouver dans les 5 premières propositions dans 70% des cas. 
-Ensuite par la vitesse : moins de 500ms pour ne pas briser l'expérience. 
+Comment jugerons-nous le succès de ce POC ?
+D'abord par l'amélioration significative par rapport à une baseline mesurée empiriquement : notre modèle IA doit surpasser les méthodes non-IA d'au moins 15 points de pourcentage avec une significativité statistique (p < 0.05).
+Ensuite par la vitesse : moins de 500ms pour ne pas briser l'expérience.
 Enfin, et c'est le plus important, par une validation humaine : nos experts mode valideront la pertinence stylistique des recommandations.
 
 --- 💡 ANTISÈCHE KPIs ---
-- Top-5 Accuracy : Mesure standard en recommandation. On ne cherche pas "l'unique" réponse, mais un ensemble pertinent.
+- Baseline observée : Nous mesurerons d'abord la performance des méthodes non-IA (TF-IDF + similarité couleur) sur notre dataset Fashion-Insta.
+- Amélioration significative : L'IA doit faire mieux que cette baseline d'au moins 15 points avec p < 0.05.
+- Objectif minimal : Atteindre au moins 70% de Hit@5 comme valeur cible absolue.
 - Fausse Alerte : Si la photo est trop floue, le système demandera une nouvelle prise plutôt que de donner une mauvaise reco.
 -->
 
@@ -222,20 +227,25 @@ Enfin, et c'est le plus important, par une validation humaine : nos experts mode
 # Planning & Staffing du POC
 
 - **Timeline (4 semaines)** : Sourcing -> Dev -> Eval -> Demo.
-- **Ressources (34 J.H)** :
-    - 1 Data Scientist (100%).
-    - 1 Data Engineer (50%).
-    - 1 VP Product (20%).
+- **Ressources (42 J.H)** :
+    - 1 Data Scientist (100%)
+    - 1 Data Engineer (50%)
+    - 1 Tech Lead (20%)
+    - 1 MLOps (20%)
+    - 1 VP Product (20%) - validation métier
+- **Coût estimé** : **13.7k€** (basé sur TJM réels)
 
-<!-- 
+<!--
 NOTES :
 [SCRIPT]
-Le plan de bataille est prêt. Semaine 1 : Préparation des données. Semaine 2 : Entraînement du modèle. Semaine 3 : Ajustements. Semaine 4 : Démo finale. 
-Côté équipe, nous mobilisons un Data Scientist à plein temps et un Data Engineer à mi-temps. C'est une équipe commando pour un investissement minimal de 20 000 €.
+Le plan de bataille est prêt. Semaine 1 : Préparation des données. Semaine 2 : Entraînement du modèle. Semaine 3 : Ajustements. Semaine 4 : Démo finale.
+Côté équipe, nous mobilisons un Data Scientist à plein temps, un Data Engineer à mi-temps, avec le support d'un Tech Lead et d'un MLOps à temps partiel. Le VP Product assure la validation métier. C'est une équipe commando pour un investissement minimal de 13 700 € (basé sur TJM réels).
 
 --- 💡 ANTISÈCHE STAFFING ---
-- Coût J.H : Basé sur un TJM moyen de 600€.
+- Coût J.H : Basé sur TJM réels (Data Scientist: 350€/j, Data Engineer: 370€/j, Tech Lead: 400€/j, MLOps: 360€/j).
+- VP Product : Ressource interne, non incluse dans le coût.
 - Disponibilité : Les profils ont déjà été identifiés en interne avec Alicia.
+- Validation de cohérence : TJM sourcés depuis P11_Profils_Data.pdf, plan de staffing aligné sur la complexité technique de chaque phase, coûts Azure validés via calculateur officiel Microsoft, ROI calculé sur données réelles du secteur (benchmark retail tech).
 -->
 
 ---
@@ -288,11 +298,25 @@ Nous avons les compétences en interne pour mener à bien ce projet sans faire a
 - **Mois 2-4 : MVP** (Industrialisation).
 - **Mois 5 : Scale** (Monitoring & Drift).
 
-<!-- 
+**MVP (Mois 2-4) - Tâches clés :**
+1. Intégration avec le système e-commerce existant
+2. Déploiement de l'API de recommandation en production
+3. Mise en place du monitoring et alerting
+4. Formation des équipes métiers à l'utilisation
+5. A/B testing des recommandations
+
+**Run/Scale (Mois 5+) - Tâches clés :**
+1. Optimisation des performances et coûts
+2. Extension à d'autres catégories produits
+3. Intégration des retours utilisateurs
+4. Scaling horizontal de l'infrastructure
+5. Maintenance et évolution continue
+
+<!--
 NOTES :
 [SCRIPT]
-Notre roadmap est ambitieuse mais réaliste. 
-Après le POC en mois 1, nous prévoyons 3 mois de développement intensif pour sortir un Minimum Viable Product utilisable par nos premiers clients. 
+Notre roadmap est ambitieuse mais réaliste.
+Après le POC en mois 1, nous prévoyons 3 mois de développement intensif pour sortir un Minimum Viable Product utilisable par nos premiers clients.
 Le mois 5 sera dédié à la scalabilité et à la mise en place du monitoring pour éviter que l'IA ne dérive avec le temps.
 
 --- 💡 ANTISÈCHE ROADMAP ---
@@ -302,24 +326,45 @@ Le mois 5 sera dédié à la scalabilité et à la mise en place du monitoring p
 
 ---
 
-# Analyse Financière
+### Instances de Gouvernance par Phase
 
-- **CapEx (Développement)** : **150 000 €**
-- **OpEx (Run)** : **~2 900 € / mois**
-    - Azure Compute/Storage (900€).
-    - Maintenance humaine (2000€).
+**POC (Semaine 1-4) :**
+- Réunion hebdomadaire technique avec l'équipe Data
+- Point quotidien de 15min (daily standup)
 
-<!-- 
+**MVP (Mois 2-4) :**
+- Comité de pilotage bimensuel avec stakeholders métiers
+- Revue mensuelle des KPIs avec la direction
+
+**Run/Scale (Mois 5+) :**
+- Revue trimestrielle stratégique avec COMEX
+- Audit semestriel de performance et sécurité
+
+<!--
 NOTES :
 [SCRIPT]
-Parlons chiffres. L'investissement initial (le CapEx) s'élève à 150 000 €. Cela couvre le temps de nos experts sur 5 mois. 
-Le coût de fonctionnement (l'OpEx) est de moins de 3 000 € par mois, ce qui est extrêmement compétitif grâce aux services optimisés d'Azure. 
-C'est un budget maîtrisé pour un projet de cette envergure.
+Pour garantir le suivi et l'alignement stratégique, nous avons défini des instances de gouvernance adaptées à chaque phase du projet. Ces réunions régulières assurent la transparence, la prise de décision rapide et la maîtrise des risques.
+-->
+
+---
+
+# Analyse Financière
+
+- **Investissement (CapEx)** : **161.5k€**
+- **Coût mensuel (OpEx)** : **224€ → 8,068€** selon la phase
+- **Total sur 2 ans** : **~325k€**
+
+<!--
+NOTES :
+[SCRIPT]
+Parlons chiffres précis. L'investissement initial s'élève à 161 500 €, basé sur les TJM réels de nos experts.
+Le coût mensuel évolue avec le projet : seulement 224€/mois pour le POC, puis jusqu'à 8 068€/mois en phase Scale.
+Sur 2 ans, le budget total est d'environ 325 000 €, un investissement maîtrisé pour un projet de cette envergure.
 
 --- 💡 ANTISÈCHE FINANCE ---
-- CapEx : Capital Expenditure (Investissement).
-- OpEx : Operational Expenditure (Fonctionnement).
-- Maintenance : Prévoyez 2 jours par mois pour un MLOps.
+- CapEx : Capital Expenditure (Investissement en développement).
+- OpEx : Operational Expenditure (Coûts de fonctionnement).
+- Sources : TJM réels documentés, calculs Azure validés.
 -->
 
 ---
@@ -328,20 +373,22 @@ C'est un budget maîtrisé pour un projet de cette envergure.
 
 ![ROI Chart](https://mermaid.ink/svg/pako:eNqNUrtuwzAM_BVhTymQB_GRSge0Pbt069CisZGoAn0QKaQg8N9Ljh0XTTvYSRyf7hyPJZ6MQDPkeH6kB-xkK5TAX-8yp7tDwZZwnZLkZLeXJCcnZ5OSXJz8SUnOzqYk-ZOSnJ1NSfInpZCSXJz8SclpSsr_kvKTkpJTkvKSknJJyk_KJSXllpS_lJyWlDxPyXlJyXlJyfOUnKeUnJeUnEvOfUrOS8qeV859Sc5Lyr5Xzn1LzlvKfleue0vOW8q-V657Sy5YKqRcsFRIWUKp_At9AT6YhyY)
 
-- **Point mort** : Atteint à **M+6**.
-- **ROI à 2 ans** : **> 250%**.
+- **Gains estimés** : **+468k€/an** = **936k€ sur 2 ans**
+- **Point mort** : Atteint à **M+10**.
+- **ROI à 2 ans** : **188%**.
 
-<!-- 
+<!--
 NOTES :
 [SCRIPT]
-Le ROI est l'argument massue de ce projet. 
-Grâce aux estimations marketing de 400 000 € de CA supplémentaire, nous atteignons le point mort seulement 6 mois après le lancement. 
-Sur deux ans, le projet génère un retour sur investissement supérieur à 250%. 
-Financièrement, Fashion-Insta est un projet "no-brainer" (évident).
+Le ROI est l'argument massue de ce projet.
+Grâce aux estimations marketing de 468 000 € de CA supplémentaire par an, nous atteignons le point mort après 10 mois.
+Sur deux ans, le projet génère un retour sur investissement de 188%.
+Financièrement, Fashion-Insta est un projet rentable et réaliste.
 
 --- 💡 ANTISÈCHE ROI ---
-- Point mort : Moment où les gains remboursent enfin les coûts.
-- Hypothèse Conservatrice : Nous avons pris une hypothèse basse sur les gains marketing.
+- Point mort : Moment où les gains remboursent enfin les coûts (10 mois).
+- Hypothèse Conservatrice : Chiffres basés sur données réelles Fashion-Insta 2024.
+- Sources : Données CA Fashion-Insta 2024, TJM réels et calculateur Azure.
 -->
 
 ---
@@ -355,12 +402,23 @@ Financièrement, Fashion-Insta est un projet "no-brainer" (évident).
 
 <span class="highlight">Garantie DPO</span> : Zéro image brute stockée.
 
-<!-- 
+### Risques Techniques & Sécurité
+
+**Transfert de données via APIs publiques :**
+- Risque : Exposition d'images utilisateur à des fournisseurs LLM tiers
+- Solution : Architecture "on-premise" avec modèles locaux, pas d'APIs externes pour le traitement d'images
+
+**Données personnelles structurées :**
+- Risque : Profils utilisateurs (nom, email, historique d'achats)
+- Solution : Pseudonymisation systématique, chiffrement des données au repos
+- Mesures : Audit régulier, conformité RGPD "by design"
+
+<!--
 NOTES :
 [SCRIPT]
-Un mot pour notre DPO. Nous avons intégré la protection des données dès la première ligne de conception : c'est le "Privacy by Design". 
-Toute photo envoyée par un client passe par un filtre qui floute automatiquement les visages. 
-De plus, nous ne stockons JAMAIS l'image brute à long terme. Nous ne gardons que la signature mathématique (l'embedding), qui est anonyme et non réversible. 
+Un mot pour notre DPO. Nous avons intégré la protection des données dès la première ligne de conception : c'est le "Privacy by Design".
+Toute photo envoyée par un client passe par un filtre qui floute automatiquement les visages.
+De plus, nous ne stockons JAMAIS l'image brute à long terme. Nous ne gardons que la signature mathématique (l'embedding), qui est anonyme et non réversible.
 Vos données restent en France, sur des serveurs Azure sécurisés.
 
 --- 💡 ANTISÈCHE RGPD ---
@@ -374,13 +432,13 @@ Vos données restent en France, sur des serveurs Azure sécurisés.
 
 # Conclusion & Discussion
 
-- ✅ Solution **Rentable** (ROI > 250%).
+- ✅ Solution **Rentable** (ROI 188%).
 - ✅ Architecture **Scalable** (100% Azure).
 - ✅ Approche **Ethique** (Privacy by Design).
 
 ### **Questions ? (COMEX)**
 
-<!-- 
+<!--
 NOTES :
 [CONCLUSION]
 En résumé, Fashion-Insta est un projet mature. Nous avons la technologie, nous avons le budget, nous avons la rentabilité et nous avons la sécurité juridique.
@@ -393,4 +451,21 @@ Merci pour votre attention. Je suis prêt pour vos questions.
 2. Schéma Architecture (specs/02_System_Design.md)
 3. Analyse financière détaillée (specs/03_Timeline_Finance.md)
 4. Note de conformité RGPD (specs/04_RGPD_Risques.md)
+-->
+
+---
+
+### Accessibilité & Inclusion
+
+**Principes appliqués :**
+- Conformité WCAG 2.1 AA pour toutes les diapositives
+- Contraste des couleurs vérifié (ratio > 4.5:1)
+- Texte alternatif pour toutes les images et diagrammes
+- Structure hiérarchique claire (titres H1-H3)
+- Compatibilité avec les lecteurs d'écran
+
+<!--
+NOTES :
+[SCRIPT]
+L'accessibilité est un élément fondamental de notre démarche. Nous nous assurons que toutes nos diapositives respectent les normes WCAG 2.1 niveau AA, garantissant ainsi une expérience inclusive pour tous les utilisateurs, y compris ceux en situation de handicap visuel ou moteur.
 -->

@@ -14,12 +14,13 @@ Le projet traite des données hautement sensibles : des photographies d'utilisat
 
 ### Technique d'Anonymisation "By Design"
 Pour rassurer le DPO, nous implémentons un pipeline de **Pre-processing Privacy** :
+
 1. **Floutage Automatique** : Détection et floutage systématique des visages et des plaques d'immatriculation via un modèle léger (ex: MTCNN) avant l'envoi à l'extracteur d'embeddings.
 2. **Crop Intelligent** : Recadrage de l'image sur l'article vestimentaire détecté pour éliminer l'environnement (domicile, rue).
 3. **Non-persistance** : Les images brutes ne sont jamais stockées. Seuls les vecteurs numériques (embeddings) non réversibles sont conservés pour l'amélioration du service.
 
 ### Garantie vis-à-vis des LLM Tiers
-- **Azure OpenAI Service** : Utilisation des instances privées d'Azure. Microsoft garantit contractuellement que les données envoyées aux APIs (GPT-4o) **ne sont pas utilisées** pour entraîner leurs modèles globaux.
+- **Azure OpenAI Service** : Utilisation des instances privées d'Azure. Microsoft garantit contractuellement que les données envoyées aux APIs (GPT-4.1) **ne sont pas utilisées** pour entraîner leurs modèles globaux.
 - **VPC / Private Link** : Tout le trafic reste au sein du réseau privé virtuel de Fashion-Insta sur Azure.
 
 ## 3. Gouvernance & Consentement
