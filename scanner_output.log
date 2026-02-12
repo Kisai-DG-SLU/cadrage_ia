@@ -38,11 +38,7 @@ DEBUG: Skill 'Deep Learning' - Contribution: 0.0, Max Potential Raw: 0.0, Ref Sc
 DEBUG: Skill 'RAG' - Contribution: 0.0, Max Potential Raw: 0.0, Ref Score (100%): 1.0, Normalized Level: 0
 ✅ Dashboard Intelligence (Recursive) : 7 projets finis.
 🔄 Syncing data to repository...
-The following paths are ignored by one of your .gitignore files:
-data
-hint: Use -f if you really want to add them.
-hint: Disable this message with "git config set advice.addIgnoredFile false"
-❌ Failed to sync data: Command '['git', 'add', PosixPath('/Users/daminou/Documents/Formation_IA/Dashboard/data/projects.json')]' returned non-zero exit status 1.
+ℹ️ No changes detected in projects.json, skipping push.
 DEBUG: Project repositories paths for hooks deployment:
 DEBUG:   Projet 8: /Users/daminou/Documents/Formation_IA/Projet_8/credit-scoring-app
 DEBUG:   Projet 9: /Users/daminou/Documents/Formation_IA/Projet_9/cadrage_ia
